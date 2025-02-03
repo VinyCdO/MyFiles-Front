@@ -1,0 +1,51 @@
+.fileList {
+  padding: 20px;
+}
+
+.fileTable {
+  width: 90%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.fileTable th, .fileTable td {
+  border: 1px solid #ddd;
+  padding: 16px; 
+  text-align: left;
+}
+
+.fileTable th {
+  background-color: #052f5f; 
+  color: white; 
+}
+
+.fileTable tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+.fileTable tr:nth-child(odd) {
+  background-color: #ffffff; 
+}
+
+.fileTable tr:hover {
+  background-color: #ddd; 
+}
+
+.fileTable button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #c21010;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.fileTable button:hover {
+  background-color: #7c0101;
+}
+
+.titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #6b6b6b
+}

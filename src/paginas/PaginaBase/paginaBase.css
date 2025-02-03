@@ -1,0 +1,41 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainContainer {
+  display: flex;
+  position: absolute;
+}
+
+.barraNavegacao {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.menuLateral {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 60px;
+  transition: width 0.3s;
+  height: 100vh;
+  border-right: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.menuLateral.expandido {
+  width: 250px;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 20px;
+  transition: margin-left 0.3s;  
+}

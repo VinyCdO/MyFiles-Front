@@ -16,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <button className="modalCloseButton" onClick={onClose}>
           &times;
         </button>
-        <img src={Logo} className='modalLog' />
+        <img src={Logo} className='modalLog' alt="Logo da DocSpider" />
         <p className="modalVersion">Versão 1.0.0</p>
       </div>
     </div>

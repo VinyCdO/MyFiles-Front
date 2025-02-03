@@ -1,9 +1,11 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Rotas from './rotas/index.tsx';
-import React from 'react';
 
-function App() {  
-  return (<BrowserRouter>
+function App() {
+  
+  return (
+    <BrowserRouter>
       <Rotas />
     </BrowserRouter>
   );
