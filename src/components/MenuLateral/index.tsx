@@ -24,7 +24,7 @@ const MenuLateral = ({ menuExpandido }) => {
 
   return (
     <div className={`menuLateral ${menuExpandido ? 'expandido' : ''}`}>
-      <Link to="/" className='link'>
+      <Link to="/marketing" className='link'>
         <div className="menuItem">          
           <span className="menuTexto">Início</span>
           <IoMdHome className="menuIcon" size={24}/>

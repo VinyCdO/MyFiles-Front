@@ -1,0 +1,19 @@
+.imgMarketing {
+  max-width: 80vh;
+  max-height: 80vh;
+}
+
+@media (max-width: 426px) {
+  .imgMarketing {
+    max-width: 30vh;
+    max-height: 30vh;
+  }
+}
+
+.setorMarketing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+}
