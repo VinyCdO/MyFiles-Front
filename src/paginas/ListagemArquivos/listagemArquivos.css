@@ -11,12 +11,12 @@
 .fileTable th, .fileTable td {
   border: 1px solid #ddd;
   padding: 16px; 
-  text-align: left;
 }
 
 .fileTable th {
-  background-color: #052f5f; 
+  background-color: #0b4588; 
   color: white; 
+  text-align: center;
 }
 
 .fileTable tr:nth-child(even) {
@@ -32,20 +32,48 @@
 }
 
 .fileTable button {
-  margin-right: 10px;
   padding: 5px 10px;
-  background-color: #c21010;
+  background-color: #1090c2;
   color: white;
   border: none;
-  cursor: pointer;
+  cursor: pointer;  
+  border-radius: 5px;
+  font-weight: bold;  
 }
 
 .fileTable button:hover {
-  background-color: #7c0101;
+  background-color: #0c6285;  
 }
 
 .titulo {
   font-size: 24px;
   margin-bottom: 20px;
   color: #6b6b6b
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.headerContent button {
+  padding: 10px 20px;
+  background-color: #0b4588;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.headerContent button:hover {
+  background-color: #052f5f;
+}
+
+.fileTable td:last-child {
+  text-align: center;  
 }

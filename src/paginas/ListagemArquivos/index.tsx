@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getArquivos } from '../../services/arquivos.js';
 import { IArquivo } from '../../interfaces/IArquivo.ts';
 import './listagemArquivos.css';
+import { useNavigate } from 'react-router-dom';
 
 const FileList: React.FC = () => {
   const [arquivos, setArquivos] = useState<IArquivo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  
+
+  let navigate = useNavigate();
+
   useEffect(() => {
-    axios.get('http://localhost:8000/arquivos')
-      .then(response => {
-        setArquivos(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-        setError('Erro ao carregar arquivos');
-        setLoading(false);
-      });
-  }, []);
+    fetchArquivos();
+  }
+  , []);
+
+  async function fetchArquivos() {
+    try {
+      const response = await getArquivos();
+      if (response && Array.isArray(response)) {
+        setArquivos(response);
+      } else {
+        console.error("Resposta da API em formato incorreto:", response);
+        setError("Ocorreu um erro ao buscar os arquivos, dados da API em formato inválido.");
+      }
+      
+    } catch (error) {
+      setError('Ocorreu um erro ao buscar os arquivos, tente novamente mais tarde.');
+    } finally {
+      setLoading(false);
+    }    
+  }
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -38,16 +50,19 @@ const FileList: React.FC = () => {
     document.body.removeChild(link);
   };
 
-  const handleEdit = (id: string) => {
-    // Lógica para editar o arquivo com o ID fornecido
-    console.log(`Editar arquivo com ID: ${id}`);
-  };
+  // const handleEdit = (id: string) => {
+  //   // Lógica para editar o arquivo com o ID fornecido
+  //   console.log(`Editar arquivo com ID: ${id}`);
+  // };
 
   return (
       <div className='mainContent' >
         <span className='rotaBase'>Início  {'>'}  </span>
-        <span className='rotaAtual'>Meus Documentos</span>
-        <h3 className='titulo'>Meus Documentos</h3>
+        <span className='rotaAtual'>Meus Documentos</span>        
+        <div className='headerContent'>
+          <h3 className='titulo'>Meus Documentos</h3>
+          <button className='addButton' onClick={() => navigate("/arquivos/novo")}>Adicionar Arquivo</button>
+        </div>
         <table className='fileTable'>
           <thead>
             <tr>
@@ -59,7 +74,7 @@ const FileList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {arquivos.map(arquivo => (
+            {arquivos.map((arquivo) => (
               <tr key={arquivo.id}>
                 <td>{arquivo.title}</td>
                 <td>{arquivo.description}</td>
@@ -72,7 +87,7 @@ const FileList: React.FC = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>        
       </div>    
   );
 };
