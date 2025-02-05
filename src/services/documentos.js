@@ -32,6 +32,16 @@ async function postDocumento(documento) {
   }
 }
 
+async function putDocumento(id, documento) {
+  try {
+    const response = await axios.put(`${documentosAPI}/${id}`, documento);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao salvar documento: ", error);  
+    throw error.response.data.Erro;
+  }
+}
+
 async function deleteDocumento(id) {
   try {
     const response = await axios.delete(`${documentosAPI}/${id}`);
@@ -42,7 +52,7 @@ async function deleteDocumento(id) {
   }
 }
 
-async function putDocumento(id, documento) {
+async function putFileDocumento(id, documento) {
   try {
     const formData = new FormData();
     if (documento) {
@@ -62,4 +72,4 @@ async function putDocumento(id, documento) {
   }
 }
 
-export { getDocumentos, getDocumentoById, postDocumento, deleteDocumento, putDocumento };
+export { getDocumentos, getDocumentoById, postDocumento, deleteDocumento, putDocumento, putFileDocumento };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { postDocumento, putDocumento, getDocumentoById, deleteDocumento } from '../../services/documentos';
+import { postDocumento, putFileDocumento, getDocumentoById, deleteDocumento, putDocumento } from '../../services/documentos';
 import './formUploadDocumento.css';
 import Loading from '../../components/Loading/index.tsx';
 import ModalAlerta from '../../components/ModalAlerta/index.tsx';
@@ -67,15 +67,18 @@ const FormUploadDocumento: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!file) {
-      setModalMessage('Selecione um documento para enviar!');
-      setShowModal(true);
-      return;
-    }
+    e.preventDefault();    
 
-    await enviarDocumento(title, description, fileName, file);
+    if (!id) {
+      if (!file) {
+        setModalMessage('Selecione um documento para enviar!');
+        setShowModal(true);
+        return;
+      }
+      await enviarDocumento(title, description, fileName, file);      
+    } else {
+      await atualizarDocumento(title, description, fileName, file);
+    }
   };
 
   async function enviarDocumento(title: string, description: string, fileName: string, file: File) {
@@ -93,7 +96,7 @@ const FormUploadDocumento: React.FC = () => {
 
       if (response && response.insertedId) {
         if (file) {
-          const fileResponse = await putDocumento(response.insertedId, file);
+          const fileResponse = await putFileDocumento(response.insertedId, file);
           if (fileResponse) {            
             setModalMessage('Documento enviado com sucesso!');
             setShowModal(true);
@@ -109,6 +112,37 @@ const FormUploadDocumento: React.FC = () => {
       }
     } catch (error) {
       setModalMessage('Erro ao enviar documento: ' + error);
+      setShowModal(true);
+    }
+  }  
+
+  async function atualizarDocumento(title: string, description: string, fileName: string, file: File | null) {
+    const formData = {
+      title,
+      description,
+      fileName,
+    };
+  
+    try {
+      const response = await putDocumento(id, formData);
+
+      if (response) {
+        if (file) {
+          const fileResponse = await putFileDocumento(id, file);
+          if (fileResponse) {            
+            setModalMessage('Documento ataulizado com sucesso!');
+            setShowModal(true);            
+          }
+        } else {
+          setModalMessage('Documento ataulizado com sucesso!');
+          setShowModal(true);            
+        }        
+      } else {      
+        setModalMessage('Erro ao atualizar registro do Documento: ' + response.message);
+        setShowModal(true);
+      }
+    } catch (error) {
+      setModalMessage('Erro ao atualizar documento: ' + error);
       setShowModal(true);
     }
   }  
@@ -199,12 +233,14 @@ const FormUploadDocumento: React.FC = () => {
         </div>
         <div className="formGroup">
           <label htmlFor="file">Documento</label>          
-            <input
-              type="file"
-              id="file"
-              onChange={handleFileChange}
-              disabled={consulta}
-            />
+            {!consulta && (
+              <input
+                type="file"
+                id="file"
+                onChange={handleFileChange}
+                disabled={consulta}
+              />
+            )}
             {fileUrl && (
               <button type='button' className='buttonDownload' onClick={() => handleDownload(fileUrl)}>                
                 Baixar documento existente: {fileName}
