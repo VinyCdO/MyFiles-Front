@@ -67,11 +67,21 @@
   text-decoration: none;
 }
 
-@media (max-width: 426px) {
-  .menuLateral.expandido {
-    display: flex;
+@media (max-width: 426px) {  
+  .menuLateral.expandido + .mainContent {
+    display: none;
   }
+
   .menuLateral {
     display: none;
   }
+
+  .menuLateral.expandido {
+    display: flex;
+  }
+
+  .mainContent {
+    display: flex;
+  }
+  
 }

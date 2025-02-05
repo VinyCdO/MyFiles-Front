@@ -1,0 +1,100 @@
+.formUpload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.formGroup {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.formUpload button {
+  padding: 10px 20px;
+  background-color: #0b4588;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: fit-content;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .formGroup {
+    flex: 1 1 100%;
+  }
+}
+
+.formFooter {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 25px;
+  gap: 10px;
+}
+
+.formFooter .buttonCancelar {
+  padding: 10px 20px;
+  background-color: #606770;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buttonCancelar:hover {
+  background-color: #88909b;
+}
+
+.buttonDownload {
+  padding: 10px 20px;
+  background-color: #0b4588;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.formFooter .buttonExcluir {
+  padding: 10px 20px;
+  background-color: #be0d0d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+.buttonExcluir:hover {
+  background-color: #ca3737;
+}

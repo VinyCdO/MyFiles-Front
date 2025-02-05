@@ -6,10 +6,6 @@ import { ImFilesEmpty } from "react-icons/im";
 import Modal from '../ModalSobre/index.tsx';
 import './menuLateral.css';
 
-interface MenuLateralProps {
-  menuExpandido: boolean;
-}
-
 const MenuLateral = ({ menuExpandido }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,13 +20,13 @@ const MenuLateral = ({ menuExpandido }) => {
 
   return (
     <div className={`menuLateral ${menuExpandido ? 'expandido' : ''}`}>
-      <Link to="/marketing" className='link'>
+      <Link to="/" className='link'>
         <div className="menuItem">          
           <span className="menuTexto">Início</span>
           <IoMdHome className="menuIcon" size={24}/>
         </div>
       </Link>
-      <Link to="/arquivos" className='link'>
+      <Link to="/documentos" className='link'>
         <div className="menuItem">          
           <span className="menuTexto">Meus Documentos</span>
           <ImFilesEmpty className="menuIcon" size={24}/>

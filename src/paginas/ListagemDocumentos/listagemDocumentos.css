@@ -39,6 +39,7 @@
   cursor: pointer;  
   border-radius: 5px;
   font-weight: bold;  
+  margin: 5px;
 }
 
 .fileTable button:hover {
