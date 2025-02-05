@@ -1,4 +1,4 @@
-import React, { LinkHTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IoMdHome } from "react-icons/io";
 import { IoInformationCircleOutline } from "react-icons/io5";
