@@ -67,6 +67,15 @@
   text-decoration: none;
 }
 
+.menuItem.active .menuTexto {
+  font-weight: bold;
+  color: #052f5f;  
+}
+
+.menuItem.active .menuIcon {
+  color: #052f5f;  
+}
+
 @media (max-width: 426px) {  
   .menuLateral.expandido + .mainContent {
     display: none;
